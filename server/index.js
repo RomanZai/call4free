@@ -4,13 +4,21 @@ const morgan = require("morgan");
 const path = require("path");
 const PORT = process.env.PORT || 3002;
 
+let connection;
+if (process.env.JAWSDB_URL){
+  connection = mysql.createConnection(process.env.JAWSDB_URL);
+}else{
 
-const connection = mysql.createPool({
+connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : 'root',
   database : 'prices_db'
 });
+};
+
+connection.connect();
+module.exports = connection;
 
 const app = express();
 
@@ -23,7 +31,6 @@ if (process.env.NODE_ENV === "production") {
 // Creating a GET route that returns data from the 'prices_op' table.
 app.get('/code', function (req, res) {
     // Connecting to the database.
-    connection.getConnection(function (err, connection) {
 
     // Executing the MySQL query (select all data from the 'code' table).
     connection.query('SELECT * FROM prices_op', function (error, results) {
@@ -33,7 +40,6 @@ app.get('/code', function (req, res) {
       // Getting the 'response' from the database and sending it to our route. This is were the data is.
       res.send(results)
     });
-  });
 });
 app.get("*", function(req, res) {
   res.sendFile(path.join(__dirname, "../client/build/index.html"));
