@@ -30,6 +30,7 @@
   "dependencies": {
     "@material-ui/core": "^4.7.0",
     "@material-ui/icons": "^4.5.1",
+    "dotenv": "^8.2.0",
     "if-env": "^1.0.4",
     "styled-components": "^4.4.1",
     "twilio": "^3.37.1"
