@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState , useEffect} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -16,6 +16,8 @@ import Box from '@material-ui/core/Box';
 import MyInput from './Autocomplete';
 import CardMedia from '@material-ui/core/CardMedia'
 import { shadows } from '@material-ui/system';
+import device from './twilio-device';
+import Axios from 'axios';
 
 
 const useStyles = makeStyles(theme => ({
@@ -96,6 +98,10 @@ const footers = [
 export default function Pricing() {
   const classes = useStyles();
   const [location, setLocation] = useState ({});
+
+const callNow = () =>{
+  device.connect({number: "+14254496820"})
+}
  console.log(location)
   return (
     <React.Fragment>
@@ -161,7 +167,7 @@ export default function Pricing() {
                   </ul>
                 </CardContent>
                 <CardActions>
-                  <Button fullWidth variant="contained"  href="https://www.bossrevolution.com/en-us/services/international-calling" color="primary">
+                  <Button fullWidth variant="contained"  onClick={callNow} color="primary">
                   Call now
                   </Button>
                 </CardActions>
