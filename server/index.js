@@ -31,7 +31,11 @@ const ClientCapability = twilio.jwt.ClientCapability;
 const VoiceResponse = twilio.twiml.VoiceResponse;
 
 let app = express();
-app.use(express.static(__dirname + '/public'));
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "../client/build")));
+}
 app.use(urlencoded({extended: false}));
 
 // Generate a Twilio Client capability token
