@@ -13,8 +13,8 @@ const { locations, isLoading } = useLocations();
       return (
         <ReactAutocomplete
           items={locations}
-          shouldItemRender={(item, value) => (item.country.toLowerCase().includes(value.toLowerCase())) 
-            || (item.code.toString().includes(value)) || (value.startsWith(item.code.toString()))}
+          shouldItemRender={(item, typedItem) => (item.country.toLowerCase().includes(typedItem.toLowerCase())) 
+            || (item.code.toString().includes(typedItem)) || (typedItem.startsWith(item.code.toString()))}
           getItemValue={item => item.code.toString()}
           renderItem={(item, highlighted) =>
             <div
