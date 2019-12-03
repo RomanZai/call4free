@@ -55,14 +55,13 @@ app.get('/token', (request, response) => {
 });
 
 // Create TwiML for outbound calls
-app.post('/voice', (request, res) => {
-  let response = new VoiceResponse();
-  const dial = response.dial({
+app.post('/voice', (request, response) => {
+  let voiceResponse = new VoiceResponse();
+  voiceResponse.dial({
     callerId: process.env.TWILIO_NUMBER,
-  });
-  dial.number(request.body.number)
-  res.type('text/xml');
-  res.send(response.toString());
+  }, request.body.number);
+  response.type('text/xml');
+  response.send(voiceResponse.toString());
 });
 
 // Creating a GET route that returns data from the 'prices_op' table.
