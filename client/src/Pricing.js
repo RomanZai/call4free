@@ -138,7 +138,7 @@ export default function Pricing() {
       <Box display="flex" justifyContent="center" m={1} p={1} >
       <Grid item key="1" xs={12} sm={"1" === 'Enterprise' ? 12 : 6} md={6} >
       <Box boxShadow={24}
-      bgcolor="background.paper">
+      bgcolor="background.paper" borderRadius={12}>
                 <CardHeader
                   title="Make a call now"
                   titleTypographyProps={{ align: 'center' }}
@@ -174,7 +174,7 @@ export default function Pricing() {
 
 <Grid item key="2" xs={12} sm={"1" === 'Enterprise' ? 12 : 6} md={4}>
 <Box boxShadow={24}
-      bgcolor="background.paper">
+      bgcolor="background.paper" borderRadius={12}>
                 <CardHeader
                   title="Boss Revolution"
                   titleTypographyProps={{ align: 'center' }}
@@ -205,7 +205,7 @@ export default function Pricing() {
 
               <Grid item key="3" xs={12} sm={"1" === 'Enterprise' ? 12 : 6} md={4}>
               <Box boxShadow={24}
-      bgcolor="background.paper">
+      bgcolor="background.paper" borderRadius={12}>
                 <CardHeader
                   title="Viber"
                   titleTypographyProps={{ align: 'center' }}
@@ -236,7 +236,7 @@ export default function Pricing() {
 
               <Grid item key="4" xs={12} sm={"1" === 'Enterprise' ? 12 : 6} md={4}>
               <Box boxShadow={24}
-      bgcolor="background.paper">
+      bgcolor="background.paper" borderRadius={12}>
                 <CardHeader
                   title="Sprint"
                   titleTypographyProps={{ align: 'center' }}
@@ -269,7 +269,7 @@ export default function Pricing() {
 
               <Grid item key="5" xs={12} sm={"1" === 'Enterprise' ? 12 : 6} md={4}>
               <Box boxShadow={24}
-      bgcolor="background.paper">
+      bgcolor="background.paper" borderRadius={12}>
                 <CardHeader
                   title="Verizon"
                   titleTypographyProps={{ align: 'center' }}
@@ -302,7 +302,7 @@ export default function Pricing() {
 
               <Grid item key="6" xs={12} sm={"1" === 'Enterprise' ? 12 : 6} md={4}>
               <Box boxShadow={24}
-      bgcolor="background.paper">
+      bgcolor="background.paper" borderRadius={12}>
                 <CardHeader
                   title="AT&T"
                   titleTypographyProps={{ align: 'center' }}
@@ -335,7 +335,7 @@ export default function Pricing() {
 
               <Grid item key="7" xs={12} sm={"1" === 'Enterprise' ? 12 : 6} md={4}>
               <Box boxShadow={24}
-      bgcolor="background.paper">
+      bgcolor="background.paper" borderRadius={12}>
                 <CardHeader
                   title="T-Mobile"
                   titleTypographyProps={{ align: 'center' }}
