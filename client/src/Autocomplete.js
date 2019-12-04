@@ -1,4 +1,4 @@
-import React , { useState }from "react";
+import React , { useState, useContext }from "react";
 import ReactAutocomplete from "react-autocomplete";
 import { useLocations } from "./hooks/locations";
 
@@ -25,7 +25,7 @@ const { locations, isLoading } = useLocations();
             </div>
           }
           value={value}
-          onChange={e => setValue(e.target.value )}
+          onChange={e => { setValue(e.target.value); props.callback(e.target.value) }}
           onSelect={value => selectItem(value)}
           inputProps={{ style: { width: '100%',height: '40px'}, placeholder: 'Please use internatioanl format'}}  
           wrapperStyle={{ width:  '100%'   }}
