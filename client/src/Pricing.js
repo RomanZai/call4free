@@ -1,4 +1,4 @@
-import React, {useState , useEffect} from 'react';
+import React, {useState} from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
@@ -15,9 +15,8 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import MyInput from './Autocomplete';
 import CardMedia from '@material-ui/core/CardMedia'
-import { shadows } from '@material-ui/system';
 import device from './twilio-device';
-import Axios from 'axios';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -98,9 +97,19 @@ const footers = [
 export default function Pricing() {
   const classes = useStyles();
   const [location, setLocation] = useState ({});
+  const [code, setCode] = useState ("");
+
+
+const callback = (code) =>{
+setCode(code)
+}
 
 const callNow = () =>{
-  device.connect({number: "+14254496820"})
+  console.log(code)
+  device.connect({number: code})
+}
+const disconnect = () =>{
+  device.disconnectAll()
 }
  console.log(location)
   return (
@@ -137,7 +146,7 @@ const callNow = () =>{
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
           Insert mobile number
         </Typography>
-        <MyInput setLocation={setLocation}/>
+        <MyInput setLocation={setLocation} callback={callback}/>
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main" >
@@ -169,6 +178,9 @@ const callNow = () =>{
                 <CardActions>
                   <Button fullWidth variant="contained"  onClick={callNow} color="primary">
                   Call now
+                  </Button>
+                  <Button fullWidth variant="contained"  onClick={disconnect} color="secondary">
+                  End Call
                   </Button>
                 </CardActions>
               </Box>
