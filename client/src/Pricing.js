@@ -16,7 +16,7 @@ import Box from '@material-ui/core/Box';
 import MyInput from './Autocomplete';
 import CardMedia from '@material-ui/core/CardMedia'
 import device from './twilio-device';
-
+import app from "./base";
 
 
 const useStyles = makeStyles(theme => ({
@@ -129,15 +129,9 @@ const disconnect = () =>{
         </Card>
           </Typography>
           <nav>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Features
-            </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Enterprise
-            </Link>
-            <Link variant="button" color="textPrimary" href="#" className={classes.link}>
-              Support
-            </Link>
+            <Button fullWidth variant="contained"  onClick={() => app.auth().signOut()}>
+            Sign out
+            </Button>
           </nav>
         </Toolbar>
       </AppBar>
