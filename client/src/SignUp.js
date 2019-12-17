@@ -1,20 +1,17 @@
 import React, { useCallback, useContext } from "react";
-import { withRouter, Redirect } from "react-router";
-import app from "./base.js";
+import { withRouter } from "react-router";
+import app from "./base";
 import { AuthContext } from "./Auth.js";
 
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import VerifiedUser  from '@material-ui/icons/VerifiedUser';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-
 
 
 const useStyles = makeStyles(theme => ({
@@ -26,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.primary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -37,41 +34,36 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = ({ history }) => {
-  const handleLogin = useCallback(
-    async event => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        await app
-          .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  );
 
-  const { currentUser } = useContext(AuthContext);
-  const classes = useStyles();
 
-  if (currentUser) {
-    return <Redirect to="/" />;
-  }
+const SignUp = ({ history }) => {
+  const handleSignUp = useCallback(async event => {
+    event.preventDefault();
+    const { email, password } = event.target.elements;
+    try {
+      await app
+        .auth()
+        .createUserWithEmailAndPassword(email.value, password.value);
+      history.push("/");
+    } catch (error) {
+      alert(error);
+    }
+  }, [history]);
+
+const { currentUser } = useContext(AuthContext);
+const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+<Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <VerifiedUser  />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign in
+          Sign up
         </Typography>
-        <form onSubmit={handleLogin} className={classes.form} noValidate>
+        <form onSubmit={handleSignUp} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -94,7 +86,6 @@ const Login = ({ history }) => {
             id="password"
             autoComplete="current-password"
           />
-
           <Button
             type="submit"
             fullWidth
@@ -102,19 +93,14 @@ const Login = ({ history }) => {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Sign Up
           </Button>
         </form>
-            <Grid item>
-              <Link href="/signup" variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-      </div>
+        </div>
       <Box mt={8}>
       </Box>
     </Container>
   );
-}
+};
 
-export default withRouter(Login);
+export default withRouter(SignUp);
